@@ -5,8 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const app = express();
-const dbCloudUrl =
-  "mongodb+srv://admin:admin12345@recipesharingapi.rpi2nxy.mongodb.net/bastaDB?retryWrites=true&w=majority&appName=RecipeSharingAPI";
+const dbCloudUrl = process.env.MONGODB_URI;
 
 app.use(cors());
 app.use(express.json());
@@ -23,4 +22,10 @@ mongoose
   });
 
 app.use("/.netlify/functions/api", router);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
 module.exports.handler = serverless(app);
