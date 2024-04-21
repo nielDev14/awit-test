@@ -21,11 +21,13 @@ mongoose
     console.log("Error: ", err);
   });
 
-app.use("/.netlify/functions/api", router);
+app.use("/", router);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+// app.use("/.netlify/functions/api", router);
+
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+//   console.log(`Server is running on http://localhost:${PORT}`);
+// });
 
 module.exports.handler = serverless(app);
